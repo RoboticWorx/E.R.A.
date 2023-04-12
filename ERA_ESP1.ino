@@ -57,7 +57,6 @@ void setup()
 
 void loop() 
 {
-  //Serial.println(baseStepper.currentPosition());
   unsigned long currentMillis = millis();
   
   if (digitalRead(switch1Pin) == HIGH)
@@ -193,5 +192,4 @@ void j1StepperJoystickControl(int yAxisPin, int j1StepperSpeed)
     j1Stepper1.runSpeed();  
     j1Stepper2.runSpeed();
   }
-  //Serial.println(j1StepperSpeed);
 }
