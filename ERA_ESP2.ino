@@ -5,11 +5,11 @@ Servo wristPitchServo;  // create servo object to control a servo
 Servo accesServo;  // create servo object to control a servo
 
 const int button1Pin = 22;
-const int button3Pin = 4;
+const int button2Pin = 4;
 const int switch1Pin = 33;
 const int switch2Pin = 32;
 const int wristPitchServoPin = 21;
-const int accesServoPin = 23;
+const int accesServoPin = 16;
 
 const int xAxisPin = 34; 
 const int yAxisPin = 35; 
@@ -43,8 +43,8 @@ bool dontLoop = false;
 bool saveButtonHit = false;
 bool replay = true;
 
-AccelStepper j2Stepper(1, 13, 12);   // (Type:driver(1 is default driver), STEP, DIR)   
-AccelStepper wristRollStepper(1, 15, 14);   // (Type:driver(1 is default driver), STEP, DIR)   
+AccelStepper j2Stepper(1, 13, 14);   // (Type:driver(1 is default driver), STEP, DIR)   
+AccelStepper wristRollStepper(1, 27, 25);   // (Type:driver(1 is default driver), STEP, DIR)   
 
 void setup() 
 {
@@ -64,14 +64,13 @@ void setup()
   pinMode(switch2Pin, INPUT_PULLDOWN);
 
   pinMode(button1Pin, INPUT_PULLDOWN);
-  pinMode(button3Pin, INPUT_PULLDOWN);
+  pinMode(button2Pin, INPUT_PULLDOWN);
 
   Serial.begin(115200);
 }
 
 void loop() 
 {
-  //Serial.println(j2Stepper.currentPosition());
   unsigned long currentMillis = millis();
   
   
@@ -112,7 +111,7 @@ void loop()
       accesServo.write(accesServoMove);
     }
 
-    if (digitalRead(button3Pin) == HIGH) //Reset
+    if (digitalRead(button2Pin) == HIGH) //Reset
     {
       memset(j2Positions, 0, sizeof(j2Positions));
       memset(wristStepperPositions, 0, sizeof(wristStepperPositions));
@@ -238,5 +237,4 @@ void wristRollStepperJoystickControl(int yAxisPin, int wristRollStepperSpeed)
     wristRollStepper.setSpeed(wristRollStepperSpeed); //steps per second 
     wristRollStepper.runSpeed();  
   }
-  //Serial.println(wristRollStepperSpeed);
 }
