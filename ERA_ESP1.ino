@@ -8,7 +8,7 @@ const int xAxisPin = 34;
 const int yAxisPin = 35; 
 
 const int h1atPositionPin = 21;
-const int h2atPositionPin = 26;
+const int h2atPositionPin = 17;
 
 int baseStepperSpeed;
 int j1StepperSpeed;
@@ -17,7 +17,7 @@ int maxSpeed = 1000;
 int basePositions[10];
 int j1Stepper1Positions[10];
 int j1Stepper2Positions[10];
-int stepperCount = 0;
+int posCount = 0;
 
 int delayPositions[10];
 int delayPositionsCount = 0;
@@ -29,9 +29,9 @@ bool dontLoop = false;
 bool saveButtonHit = false;
 bool replay = true;
 
-AccelStepper baseStepper(1, 13, 12);   // (Type:driver(1 is default driver), STEP, DIR)   
-AccelStepper j1Stepper1(1, 15, 14);   // (Type:driver(1 is default driver), STEP, DIR)   
-AccelStepper j1Stepper2(1, 19, 18);   // (Type:driver(1 is default driver), STEP, DIR)   
+AccelStepper baseStepper(1, 13, 14);   // (Type:driver(1 is default driver), STEP, DIR)   
+AccelStepper j1Stepper1(1, 27, 26);   // (Type:driver(1 is default driver), STEP, DIR)   
+AccelStepper j1Stepper2(1, 25, 32);   // (Type:driver(1 is default driver), STEP, DIR)   
 
 void setup() 
 {
@@ -71,16 +71,16 @@ void loop()
       memset(j1Stepper1Positions, 0, sizeof(j1Stepper1Positions));
       memset(j1Stepper2Positions, 0, sizeof(j1Stepper2Positions));
       memset(delayPositions, 0, sizeof(delayPositions));
-      stepperCount = 0;
+      posCount = 0;
       delayPositionsCount = 0;
       timeDelay = 0;      
     }
     if (digitalRead(button1Pin) == HIGH && dontLoop == true)
     {
-      basePositions[stepperCount] = baseStepper.currentPosition(); 
-      j1Stepper1Positions[stepperCount] = j1Stepper1.currentPosition(); 
-      j1Stepper2Positions[stepperCount] = j1Stepper2.currentPosition(); 
-      stepperCount++;
+      basePositions[posCount] = baseStepper.currentPosition(); 
+      j1Stepper1Positions[posCount] = j1Stepper1.currentPosition(); 
+      j1Stepper2Positions[posCount] = j1Stepper2.currentPosition(); 
+      posCount++;
       delay(100);
       previousMillis = currentMillis; //Start clock
       saveButtonHit = true;
@@ -93,7 +93,7 @@ void loop()
 
     if (saveButtonHit) //So entire statement will execute
     {
-      if (baseStepper.currentPosition() == basePositions[stepperCount-1]) //If still
+      if (baseStepper.currentPosition() == basePositions[posCount-1]) //If still
       {
         timeDelay = currentMillis - previousMillis;
         delayPositions[delayPositionsCount] = timeDelay;
