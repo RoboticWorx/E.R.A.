@@ -195,30 +195,7 @@ void inverseKinematics(float x, float y, float z) //x & y are desired position c
   //Gripper orientation. 
   //Psi is desired orientation with respect to y-axis. (180 is straight down)
   theta3 = psi - theta2 - (90 - theta1); //(90 - theta1) so we can make it relative to y-axis. Did it here so it wouldn't be an abs(value)
-  theta3 = 180 - theta3; //180 because that is the angle for gripper to be straight, & minus sign because down is negative for how I mounted the gripper
-
-  /*Serial.print("(X, Y, Z): (");
-  Serial.print(x);
-  Serial.print(", ");
-  Serial.print(y);
-  Serial.print(", ");
-  Serial.print(z);
-  Serial.print(")    ");
-  Serial.print("Theta 1: ");
-  Serial.print(90 - theta1);
-  Serial.print("    ");
-  Serial.print("Theta 2: ");
-  Serial.print(theta2);
-  Serial.print("    ");
-  Serial.print("Theta 3: ");
-  Serial.print(theta3);  
-  Serial.print("    ");
-  Serial.print("Delta: ");
-  Serial.print(delta);  
-  Serial.print("    ");
-  Serial.print("X2: ");
-  Serial.println(x2);*/
-  
+  theta3 = 180 - theta3; //180 because that is the angle for gripper to be straight, & minus sign because down is negative for how I mounted the gripper  
 }
 
 bool isClose(AccelStepper s1, int threshold) //"s1" corresponds with the stepper motor declared in the function call, threshold is steps to be considered close
