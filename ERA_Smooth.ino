@@ -16,15 +16,12 @@ float theta3;
 float psi = 180; //Desired gripper orientation. 
 const int wristPin = 2;
 
-const int gripperPin = 38;
-
 int j1Speed = 600;
 int j2Speed = 800;
 int baseSpeed = 400;
 int previousMillis = 0;
 
 Servo wrist;  //Create servo object to control a servo
-Servo gripper;  //Create servo object to control a servo
 AccelStepper baseStepper(1, 5, 4);   // (Type:driver(1 is default driver), STEP, DIR)
 AccelStepper j1Stepper_L(1, 7, 6);   // (Type:driver(1 is default driver), STEP, DIR)
 AccelStepper j1Stepper_R(1, 17, 15);   // (Type:driver(1 is default driver), STEP, DIR)
