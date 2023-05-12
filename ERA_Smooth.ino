@@ -45,7 +45,6 @@ void setup() {
   j2Stepper.setMaxSpeed(j2Speed); //400 pulse/rev
 
   wrist.attach(wristPin);
-  gripper.attach(gripperPin);
 
   //Initialize Serial Monitor
   Serial.begin(115200);
